@@ -1,3 +1,8 @@
+// @deno-types="./asset-url.d.ts"
+import heartUrl from "./assets/heart_drawing.png?no-inline";
+// @deno-types="./asset-url.d.ts"
+import starUrl from "./assets/star_drawing.png?no-inline";
+// Images were created by me using ibisPaint X
 const portrait = document.querySelector<HTMLDivElement>("#portrait")!;
 const spin = document.querySelector<HTMLButtonElement>("#spin")!;
 
@@ -5,7 +10,10 @@ const spin = document.querySelector<HTMLButtonElement>("#spin")!;
 const face = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 face.setAttribute("viewBox", "0 0 200 200");
 face.setAttribute("role", "img");
-face.setAttribute("aria-label", "A neutral face");
+face.setAttribute(
+  "aria-label",
+  "A face with a pink heart and yellow star tattoos.",
+);
 
 const head = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
 head.setAttribute("cx", "100");
@@ -58,6 +66,28 @@ mouth.setAttribute("stroke", "#302c29");
 mouth.setAttribute("stroke-width", "4");
 mouth.setAttribute("stroke-linecap", "round");
 face.append(mouth);
+
+const heartImage = document.createElementNS(
+  "http://www.w3.org/2000/svg",
+  "image",
+);
+heartImage.setAttribute("href", heartUrl);
+heartImage.setAttribute("x", "35");
+heartImage.setAttribute("y", "100");
+heartImage.setAttribute("width", "30");
+heartImage.setAttribute("height", "30");
+face.append(heartImage);
+
+const starImage = document.createElementNS(
+  "http://www.w3.org/2000/svg",
+  "image",
+);
+starImage.setAttribute("href", starUrl);
+starImage.setAttribute("x", "120");
+starImage.setAttribute("y", "90");
+starImage.setAttribute("width", "50");
+starImage.setAttribute("height", "50");
+face.append(starImage);
 
 portrait.append(face);
 
