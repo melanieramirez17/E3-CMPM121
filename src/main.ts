@@ -5,7 +5,10 @@ const spin = document.querySelector<HTMLButtonElement>("#spin")!;
 const face = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 face.setAttribute("viewBox", "0 0 200 200");
 face.setAttribute("role", "img");
-face.setAttribute("aria-label", "A neutral face");
+face.setAttribute(
+  "aria-label",
+  "A neutral face surrounded with snazzy decorated beads",
+);
 
 const head = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
 head.setAttribute("cx", "100");
@@ -69,3 +72,22 @@ spin.addEventListener("click", () => {
     { duration: 800, easing: "ease-in-out" },
   );
 });
+
+for (let i = 0; i < 100; i++) {
+  const angle = (i / 100) * Math.PI * 2;
+  const dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+  const innerdot = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "circle",
+  );
+  dot.setAttribute("cx", String(100 + 79 * Math.cos(angle)));
+  dot.setAttribute("cy", String(100 + 86 * Math.sin(angle)));
+  dot.setAttribute("r", "3");
+  dot.setAttribute("fill", "#a699ae");
+  face.append(dot);
+  innerdot.setAttribute("cx", String(100 + 79 * Math.cos(angle)));
+  innerdot.setAttribute("cy", String(100 + 86 * Math.sin(angle)));
+  innerdot.setAttribute("r", "1");
+  innerdot.setAttribute("fill", "#ffffff");
+  face.append(innerdot);
+}
