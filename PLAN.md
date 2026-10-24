@@ -7,3 +7,7 @@
 Choosing Criterion:
 
 - I plan on picking the one that makes the character look the most joyful.
+
+Branch that survived:
+
+- I picked branch C because it looked the most jolly and had the most character. Adding the curve made the smile very joyous and felt more happy compared to branch A and B.
