@@ -6,8 +6,40 @@ function buildFace() {
   const face = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   face.setAttribute("viewBox", "0 0 200 200");
   face.setAttribute("role", "img");
-  face.setAttribute("aria-label", "A neutral face");
+  face.setAttribute(
+    "aria-label",
+    "A purple and blue gradient color face making a :D expression",
+  );
 
+  const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+  const gradient = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "linearGradient",
+  );
+  gradient.setAttribute("id", "cheek-shade");
+  gradient.setAttribute("x1", "0%");
+  gradient.setAttribute("y1", "0%");
+  gradient.setAttribute("x2", "100%");
+  gradient.setAttribute("y2", "0%");
+
+  const stopOne = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "stop",
+  );
+  stopOne.setAttribute("offset", "0%");
+  stopOne.setAttribute("stop-color", "#9D00FF");
+  gradient.append(stopOne);
+
+  const stopTwo = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "stop",
+  );
+  stopTwo.setAttribute("offset", "100%");
+  stopTwo.setAttribute("stop-color", "#1E90FF");
+  gradient.append(stopTwo);
+
+  defs.append(gradient);
+  face.append(defs);
   const head = document.createElementNS(
     "http://www.w3.org/2000/svg",
     "ellipse",
@@ -16,7 +48,7 @@ function buildFace() {
   head.setAttribute("cy", "100");
   head.setAttribute("rx", "78");
   head.setAttribute("ry", "86");
-  head.setAttribute("fill", "#f3cf87");
+  head.setAttribute("fill", "url(#cheek-shade)");
   head.setAttribute("stroke", "#302c29");
   head.setAttribute("stroke-width", "4");
   face.append(head);
@@ -54,14 +86,24 @@ function buildFace() {
   face.append(nose);
 
   const mouth = document.createElementNS("http://www.w3.org/2000/svg", "line");
-  mouth.setAttribute("x1", "75");
-  mouth.setAttribute("y1", "137");
-  mouth.setAttribute("x2", "125");
-  mouth.setAttribute("y2", "137");
+  mouth.setAttribute("x1", "70");
+  mouth.setAttribute("y1", "130");
+  mouth.setAttribute("x2", "130");
+  mouth.setAttribute("y2", "130");
   mouth.setAttribute("stroke", "#302c29");
   mouth.setAttribute("stroke-width", "4");
   mouth.setAttribute("stroke-linecap", "round");
   face.append(mouth);
+
+  const mouthSegment = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "path",
+  );
+  mouthSegment.setAttribute("d", "M 70 130 Q 100 190 130 130");
+  mouthSegment.setAttribute("fill", "none");
+  mouthSegment.setAttribute("stroke", "#302c29");
+  mouthSegment.setAttribute("stroke-width", "4");
+  face.append(mouthSegment);
 
   return face;
 }
